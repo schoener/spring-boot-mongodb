@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  api-service:
+    image: spring-boot-mongodb
+    build: .
+    restart: always
+    ports:
+      - 9091:8080
+    depends_on:
+      - api-database
+  mongodb:
+    image: "mongo:5.0.14"
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: mongodb_db
